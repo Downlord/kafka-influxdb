@@ -1,0 +1,10 @@
+#!/usr/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'kafka-influxdb==0.7.1','console_scripts','kafka_influxdb'
+__requires__ = 'kafka-influxdb==0.7.1'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('kafka-influxdb==0.7.1', 'console_scripts', 'kafka_influxdb')()
+    )

@@ -1,0 +1,25 @@
+import logging
+class Encoder(object):
+    @staticmethod
+    def encode(msg):
+        for line in msg.split("\n"):
+            series, value, timestamp = line.split()
+            if value:
+                try:
+		    val,tag = value.split(",")
+ 	            if not tag:
+                        s=(msg,line)
+	    	        msg="\n".join(s)
+                except ValueError:
+                    pass
+	        else:
+		    cleanline = (series,value,timestamp)
+		    newline=" ".join(cleanline)
+                    out=(msg,newline)
+		    msg="\n".join(out)
+		    logging.debug("XXX RECVD BAD LINE: %s", line)
+		    logging.debug("XXX -- SERIES --  : %s", series)
+		    logging.debug("XXX -- VALUE --   : %s", value)
+		    logging.debug("XXX -- TIMEST --  : %s", timestamp)
+		    logging.debug("XXX AUTOC BAD LINE: %s", newline)
+        return msg
